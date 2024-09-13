@@ -7,3 +7,6 @@
 2a. ADD prettier files manually
 .prettierrc
 .prettierignore
+3.npm i -D dotenv
+4.npm i mongoose
+5.npm i express
