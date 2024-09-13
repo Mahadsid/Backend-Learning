@@ -1,8 +1,17 @@
 import connectDB from "./db/index.js";
 import dotenv from "dotenv"
+import { app } from "./app.js";
 
 //FIRST WAY TO USE IMPORT EXPORT
 connectDB()
+    .then(() => {
+        app.listen(process.env.PORT || 8000, () => {
+            console.log(`Server is runnung at port ${process.env.PORT}`);
+        })
+    })
+    .catch((err) => {
+        console.log("Mongodb connection failed from index.js calling", err)
+    })
 
 dotenv.config({
     path: './env'
