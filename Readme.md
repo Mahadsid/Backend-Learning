@@ -2,4 +2,4 @@
 
 # Steps to setup Backend project
 
-1.
+1.npm i -D nodemon
