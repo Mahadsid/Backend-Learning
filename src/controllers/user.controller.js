@@ -26,7 +26,7 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 
     //if user already exist check
-    const existedUser = User.findOne({
+    const existedUser = await User.findOne({
         $or: [{username}, {email}]
     })
     if (existedUser) {
@@ -36,15 +36,22 @@ const registerUser = asyncHandler(async (req, res) => {
     //bcz of middleware we get things in req.files and with multer middleware we get access tp avatar (and name avatar bcz we named it in routes so this shoud be equal) then took its first property then path, optional chaining is good practice
     //till here file is in our local server multer put/took it from loacl destination (check multer milldeware)
 
+    //console.log(req.files)
     const avatarLocalPath = req.files?.avatar[0]?.path;
-    const coverImageLocalPath = req.files?.coverImage[0]?.path;
+    //console.log(avatarLocalPath)
+    //const coverImageLocalPath = req.files?.coverImage[0]?.path;
+    let coverImageLocalPath;
+    if (req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length > 0) {
+        coverImageLocalPath = req.files.coverImage[0].path
+    }
     //avatar check
     if (!avatarLocalPath) {
-        throw new ApiError(400, "Avatar file is required")
+        throw new ApiError(400, "Avatar Local file is required")
     }
 
     //upoad on cloudinary
     const avatar = await uploadOnCloudinary(avatarLocalPath)
+    //console.log("avatrt clodnry path", avatar)
     const coverImage = await uploadOnCloudinary(coverImageLocalPath)
     //again check for avatar uploaded successfully or not
     if (!avatar) {
