@@ -12,3 +12,8 @@
 5.npm i express
 6.npm i cors
 7.npm i cookie-parser
+8.npm i mongoose-aggregate-paginate-v2
+9.npm i bcrypt
+10.npm i jsonwebtoken
+11.npm i multer
+12npm i cloudinary
