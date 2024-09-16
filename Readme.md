@@ -16,4 +16,4 @@
 9.npm i bcrypt
 10.npm i jsonwebtoken
 11.npm i multer
-12npm i cloudinary
+12.npm i cloudinary
