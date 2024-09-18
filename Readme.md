@@ -17,3 +17,5 @@
 10.npm i jsonwebtoken
 11.npm i multer
 12.npm i cloudinary
+
+# Remainder-> do uncmpleted controllers tasks
